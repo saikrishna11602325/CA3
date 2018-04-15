@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+void *fun1();
+void *fun2();
+int a,b,n,i;
+int main()
+{
+pthread_t t1,t2;
+pthread_create(&t1,NULL,fun1,NULL);
+pthread_create(&t2,NULL,fun2,NULL);
+pthread_join(t1,NULL);
+pthread_join(t2,NULL);
+fun2();
+}
+void *fun1()
+{
+printf("Enter a number");
+scanf("%d",&a);
+}
+void *fun2()
+{
+for(i=2;i<=a;i++)
+{
+b=2;
+while(i%b!=0)
+{
+b++;
+}
+if(b==i)
+{
+printf("%d\t",i);
+}
+}
+}
